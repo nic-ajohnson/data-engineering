@@ -1,0 +1,28 @@
+<h1>Upload Summary</h1>
+<table id='overall_stats'>
+	<tr><td>Gross Revenue: <%= number_to_currency(@upload.gross_revenue) %></td></tr>
+	<tr><td>Date Uploaded: <%= @upload.created_at.strftime("%B %e, %Y") %></td></tr>
+</table>
+
+<h3>Transactions</h3>
+<table id='transactions'>
+	<tr>
+		<th>Purchaser Name</th>
+		<th>Item Description</th>
+		<th>Item Price</th>
+		<th>Item Count</th>
+		<th>Merchant Name</th>
+		<th>Merchant Address</th>
+	</tr>
+<% @upload.transactions.each do |transaction| %>
+	<tr>
+		<td><%= transaction.purchaser_name %></td>
+		<td><%= transaction.item_description %></td>
+		<td><%= number_to_currency(transaction.item_price) %></td>
+		<td><%= transaction.item_count %></td>
+		<td><%= transaction.merchant.name %></td>
+		<td><%= transaction.merchant.address %></td>
+	</tr>
+<% end %>
+
+</table>

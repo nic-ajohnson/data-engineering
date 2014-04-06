@@ -5,13 +5,15 @@
 		<th>File Name</th>
 		<th>Gross Revenue</th>
 		<th>Date Uploaded</th>
+		<th>Transaction List</th>
 	</tr>
 
 	<% @uploads.each do |upload| %>
   <tr>
   	<td><%= upload.file_name %></td>
-  	<td><%= upload.gross_revenue %></td>
+  	<td><%= number_to_currency(upload.gross_revenue) %></td>
   	<td><%= upload.created_at.strftime("%B %e, %Y") %></td>
+  	<td><%= link_to "View Summary", upload_path(upload.id) %></td>
   </tr>
 	<% end %>
 </table>

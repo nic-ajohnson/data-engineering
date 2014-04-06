@@ -1,6 +1,6 @@
 class Transaction < ActiveRecord::Base
 	belongs_to :upload
-	has_one :merchant
+	belongs_to :merchant
 
 	validates :purchaser_name, :presence => true
   validates :item_description, :presence => true

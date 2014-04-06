@@ -1,13 +1,13 @@
 class Upload < ActiveRecord::Base
 
-	has_many :transaction
+	has_many :transactions
 
 	def self.import(file)
 		upload = Upload.create(:file_name => file.original_filename)
 		gross_revenue = 0.0
 		file = File.open(file.path).each_line.with_index do |line, index|
 			if index != 0
-				gross_revenue += Upload.parse_line(line, upload.id)
+				gross_revenue += Upload.parse_line(line.chomp, upload.id)
 			end
 		end
 		upload.update(gross_revenue: gross_revenue)
