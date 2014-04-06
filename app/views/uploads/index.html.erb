@@ -1,0 +1,24 @@
+<h1>Past Uploads</h1>
+<% if !@uploads.empty? %>
+<table id="uploads">
+	<tr>
+		<th>File Name</th>
+		<th>Gross Revenue</th>
+		<th>Date Uploaded</th>
+	</tr>
+
+	<% @uploads.each do |upload| %>
+  <tr>
+  	<td><%= upload.file_name %></td>
+  	<td><%= upload.gross_revenue %></td>
+  	<td><%= upload.created_at.strftime("%B %e, %Y") %></td>
+  </tr>
+	<% end %>
+</table>
+<% end %>
+
+<h4>Import File</h4>
+<%= form_tag import_uploads_path, multipart: true do %>
+  <%= file_field_tag :file %>
+  <%= submit_tag "Import" %>
+<% end %>
