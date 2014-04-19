@@ -6,5 +6,6 @@ class Transaction < ActiveRecord::Base
   validates :item_description, :presence => true
   validates :item_price, :presence => true
   validates :item_count, :presence => true
+	validates :merchant_id, :presence => true
 
 end
